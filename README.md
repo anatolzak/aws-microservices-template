@@ -11,3 +11,11 @@ This repository offers a template for deploying microservices on AWS, leveraging
 - **Dynamic Scaling**: Implements auto-scaling for microservices based on various metrics like CPU and memory usage, and request count.
 - **Microservice Example**: Includes a TypeScript microservice example demonstrating rapid builds with Bun (<1 second) compared to traditional tools like Webpack.
 - **Performance Optimization**: Uses Bun runtime in Docker images for enhanced performance of the example microservice.
+
+## Deployment Guide
+
+1. **Install Dependencies**: Execute `bun install` to install required packages. This project uses Bun as its package manager.
+2. **Configure Environment**: Populate the `.env` file with necessary environment variables, referencing `.env.example` for the template.
+3. **CDK Bootstrap**: If your AWS account and region have not been prepared for CDK deployment, run `cdk bootstrap` to set up the necessary environment.
+4. **Deploy the Stack**: Use `bun run deploy` for deployment. Ensure the Docker daemon is active, as the CDK stack automates Docker image building.
+5. **DNS Configuration**: After deployment, configure your domain's DNS settings by pointing a record to the Application Load Balancer's DNS name to route traffic to your application.
