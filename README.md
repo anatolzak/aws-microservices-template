@@ -11,6 +11,7 @@ This repository offers a template for deploying microservices on AWS, leveraging
 - **Dynamic Scaling**: Implements auto-scaling for microservices based on various metrics like CPU and memory usage, and request count.
 - **Microservice Example**: Includes a TypeScript microservice example demonstrating rapid builds with Bun (<1 second) compared to traditional tools like Webpack.
 - **Performance Optimization**: Uses Bun runtime in Docker images for enhanced performance of the example microservice.
+- **Docker Image Hosting**: Docker images are stored on Amazon Elastic Container Registry (ECR).
 
 ## Deployment Guide
 
