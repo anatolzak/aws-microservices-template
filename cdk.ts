@@ -7,7 +7,7 @@ const AWS_SSL_CERTIFICATE_ARN = process.env.AWS_SSL_CERTIFICATE_ARN!;
 
 const app = new cdk.App();
 
-new EcsAlbMicroservicesStack(app, 'EcsAlbMicroservicesStackv19', {
+new EcsAlbMicroservicesStack(app, 'MicroservicesStack', {
   env: { account: AWS_ACCOUNT_ID, region: AWS_REGION },
   certificateArn: AWS_SSL_CERTIFICATE_ARN,
   microservices: [
