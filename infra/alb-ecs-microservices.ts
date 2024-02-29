@@ -15,7 +15,9 @@ export type Microservice = {
   autoScaling: {
     minCapacity: number;
     maxCapacity: number;
-    targetCpuUtilizationPercent: number;
+    targetCpuUtilizationPercent?: number;
+    targetMemoryUtilizationPercent?: number;
+    requestsPerTarget?: number;
   };
 };
 
@@ -56,7 +58,13 @@ export class EcsAlbMicroservicesStack extends cdk.Stack {
     priority,
     memoryLimitMiB,
     cpu,
-    autoScaling: { minCapacity, maxCapacity, targetCpuUtilizationPercent },
+    autoScaling: {
+      minCapacity,
+      maxCapacity,
+      targetCpuUtilizationPercent,
+      targetMemoryUtilizationPercent,
+      requestsPerTarget,
+    },
   }: Microservice) {
     if (!this.ecsCluster) {
       throw new Error('ECS Cluster must be defined');
@@ -85,7 +93,7 @@ export class EcsAlbMicroservicesStack extends cdk.Stack {
       assignPublicIp: true,
     });
 
-    this.albListener.addTargets(`${folder}Targets`, {
+    const targetGroup = this.albListener.addTargets(`${folder}Target`, {
       port: 80,
       conditions: [elbv2.ListenerCondition.pathPatterns([pathPattern])],
       priority,
@@ -102,9 +110,24 @@ export class EcsAlbMicroservicesStack extends cdk.Stack {
       maxCapacity,
     });
 
-    scalableTarget.scaleOnCpuUtilization(`${folder}AutoScaling`, {
-      targetUtilizationPercent: targetCpuUtilizationPercent,
-    });
+    if (targetCpuUtilizationPercent !== undefined) {
+      scalableTarget.scaleOnCpuUtilization(`${folder}CPUAutoScaling`, {
+        targetUtilizationPercent: targetCpuUtilizationPercent,
+      });
+    }
+
+    if (targetMemoryUtilizationPercent !== undefined) {
+      scalableTarget.scaleOnMemoryUtilization(`${folder}MemoryAutoScaling`, {
+        targetUtilizationPercent: targetMemoryUtilizationPercent,
+      });
+    }
+
+    if (requestsPerTarget !== undefined) {
+      scalableTarget.scaleOnRequestCount(`${folder}RequestAutoScaling`, {
+        requestsPerTarget,
+        targetGroup,
+      });
+    }
   }
 
   private createALB({ certificateArn }: { certificateArn: string }) {
