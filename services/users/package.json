@@ -1,0 +1,17 @@
+{
+  "name": "users",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "bun src/server.ts",
+    "build": "bun build --minify --outdir dist --target bun src/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bun": "^1.0.8",
+    "@types/node": "^20.11.21"
+  }
+}
