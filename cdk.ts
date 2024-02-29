@@ -9,7 +9,7 @@ const app = new cdk.App();
 
 new EcsAlbMicroservicesStack(app, 'EcsAlbMicroservicesStackv19', {
   env: { account: AWS_ACCOUNT_ID, region: AWS_REGION },
-  certificateArn: AWS_SSL_CERTIFICATE_ARN!,
+  certificateArn: AWS_SSL_CERTIFICATE_ARN,
   microservices: [
     {
       folder: 'users',
