@@ -9,7 +9,7 @@ This repository offers a template for deploying microservices on AWS, leveraging
 - **Container Orchestration**: Deploys microservices on ECS, orchestrating Docker containers for optimal resource utilization.
 - **Serverless Compute with Fargate**: Utilizes AWS Fargate for serverless compute, allowing for the automatic scaling and management of containers without the need to provision or manage servers.
 - **Resource Allocation**: Allows customization of resource allocation (CPU, memory) for each microservice.
-- **Dynamic Scaling**: Implements auto-scaling for microservices based on various metrics like CPU and memory usage, and request count.
+- **Dynamic Scaling**: Implements auto-scaling for microservices based on various metrics like CPU usage, memory usage, and request count.
 - **Microservice Example**: Includes a TypeScript microservice example demonstrating rapid builds with Bun (<1 second) compared to traditional tools like Webpack.
 - **Performance Optimization**: Uses Bun runtime in Docker images for enhanced performance of the example microservice.
 - **Docker Image Hosting**: Docker images are stored on Amazon Elastic Container Registry (ECR).
