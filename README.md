@@ -1,4 +1,4 @@
-# AWS Application Load Balancer & Elastic Container Service Template
+# AWS Microservices Template
 
 This repository offers a template for deploying microservices on AWS, leveraging Application Load Balancer (ALB) and Elastic Container Service (ECS).
 
